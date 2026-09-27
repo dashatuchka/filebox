@@ -22,12 +22,12 @@ func main() {
 	ctx := context.Background()
 
 	if err := initDB(ctx); err != nil {
-		log.Fatal("db init failed: %v", err)
+		log.Fatalf("db init failed: %v", err)
 	}
 	defer db.Close()
 
 	if err := runMigrations(ctx); err != nil {
-		log.Fatal("migrations failed: %v", err)
+		log.Fatalf("migrations failed: %v", err)
 	}
 
 	mux := http.NewServeMux()
