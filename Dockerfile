@@ -9,6 +9,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
+COPY migrations ./migrations
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/filebox .
 
@@ -19,6 +20,7 @@ RUN apk add --no-cache ca-certificates
 WORKDIR /app
 
 COPY --from=builder /app/filebox .
+COPY migrations ./migrations
 
 RUN mkdir -p /app/data
 
