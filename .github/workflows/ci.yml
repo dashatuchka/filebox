@@ -27,3 +27,19 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t filebox:ci .
+  
+  deploy-local:
+    needs: build
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy locally
+        run: |
+          cd ~/filebox
+          git pull
+          docker compose up -d -- build
+          docker compose ps
