@@ -56,7 +56,9 @@ jobs:
 
       - name: Deploy locally
         run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password -stdin
           cd ~/filebox
           git pull
-          docker compose up -d --build
+          docker compose pull
+          docker compose up -d
           docker compose ps

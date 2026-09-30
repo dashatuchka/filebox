@@ -1,6 +1,6 @@
 services:
   app:
-    build: .
+    image: ghcr.io/dashatuchka/filebox:latest
     platform: linux/amd64
     container_name: filebox-app
     ports:
