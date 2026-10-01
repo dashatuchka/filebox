@@ -1,10 +1,22 @@
 services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: filebox-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    restart: unless-stopped
+
   app:
     image: ghcr.io/dashatuchka/filebox:latest
     platform: linux/amd64
     container_name: filebox-app
-    ports:
-      - "8000:8000"
     env_file:
       - .env
     volumes:
@@ -34,3 +46,6 @@ services:
 
 volumes:
   pgdata:
+  caddy_data:
+  caddy_config:
+  

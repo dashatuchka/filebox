@@ -35,7 +35,7 @@ func main() {
 	mux.HandleFunc("GET /files/{id}", downloadHandler)
 	mux.HandleFunc("GET /healthz", healthHandler)
 
-	addr := ":8000"
+	addr := "[::]:8000"
 	log.Printf("listening on %s", addr)
 	if err := http.ListenAndServe(addr, mux); err != nil {
 		log.Fatal(err)
