@@ -1,3 +1,4 @@
+-- +goose Up
 CREATE TABLE IF NOT EXISTS files (
     id TEXT PRIMARY KEY,
     filename TEXT NOT NULL,
@@ -7,3 +8,6 @@ CREATE TABLE IF NOT EXISTS files (
 );
 
 CREATE INDEX IF NOT EXISTS idx_files_created_at ON files (created_at DESC);
+
+-- +goose Down
+DROP TABLE IF EXISTS files;

@@ -26,10 +26,6 @@ func main() {
 	}
 	defer db.Close()
 
-	if err := runMigrations(ctx); err != nil {
-		log.Fatalf("migrations failed: %v", err)
-	}
-
 	mux := http.NewServeMux()
 	mux.HandleFunc("POST /files", uploadHandler)
 	mux.HandleFunc("GET /files/{id}", downloadHandler)
