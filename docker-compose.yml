@@ -50,8 +50,8 @@ services:
     image: ghcr.io/kukymbr/goose-docker:latest
     container_name: filebox-migrate
     environment:
-      - GOOSE_DRIVER: postgres
-      - GOOSE_DBSTRING: postgres://filebox:filebox_dev_password@db:5432/filebox?sslmode=disable
+      GOOSE_DRIVER: postgres
+      GOOSE_DBSTRING: postgres://filebox:filebox_dev_password@db:5432/filebox?sslmode=disable
     volumes:
       - ./migrations:/migrations
     depends_on:
